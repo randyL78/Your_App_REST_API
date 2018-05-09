@@ -5,19 +5,20 @@ const express = require('express');
 const router = express.Router();
 
 // GET /rest
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   // create an object to send response in
-  const response = {};
+  const options = {};
 
   // cycle through query parameters to know how to format response
   // req.query.queryKey ie: req.query.color
   for (let param in req.query) {
-    response[param] = req.query[param];
+    options[param] = req.query[param];
   }
 
-
   // return response object
-  res.json(response);
+  req.options = options;
+  req.type = "get";
+  next();
 });
 
 module.exports = router;
