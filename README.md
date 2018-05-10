@@ -43,7 +43,7 @@ ajax.onreadystatechange = () => {
     console.log(data)
   }
 };
-ajax.open('GET', urlAPI);
+ajax.open('GET', url);
 ajax.send();
   
 ```
@@ -64,7 +64,7 @@ ajax.onreadystatechange = (function () {
     console.log(data)
   }
 });
-ajax.open('GET', urlAPI);
+ajax.open('GET', url);
 ajax.send();
 
 ```
