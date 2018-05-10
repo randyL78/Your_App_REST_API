@@ -19,19 +19,17 @@ const logger = require("morgan");
 /* Custom middleware imports */
 const routes = require("./routes");
 const traffic = require("./traffic");
+const errors = require("./errors");
 
 /* app starting point */
 app.use(logger("dev"));
 app.use(jsonParser());
-
 
 // handle routes
 app.use("/rest", routes);
 
 // create the traffic data
 app.use(traffic);
-
-
 
 // if it gets this far route was not found, catch 404 and forward to handler
 app.use(function(req, res, next) {
@@ -41,17 +39,8 @@ app.use(function(req, res, next) {
 });
 
 // main error handler
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({
-    error: {
-      message: err.message
-    }
-  });
-});
+app.use(errors);
 
-
-   
 
 /* create a server to run app */
 const port = process.env.port || 3030;
