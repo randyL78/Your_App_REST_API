@@ -106,7 +106,7 @@ ajax.send();
         },
         "date": "2018-05-08T22:12:25.836Z"
     } 
-    ... // more entries after this...
+    // more entries after this...
 
 ```
 
