@@ -10,6 +10,9 @@ const express = require('express');
 const app = express();
 
 /* Project dependencies middleware */
+// handle CORS requirements
+const cors = require('cors');
+
 // used to create json returns and recieves
 const jsonParser = require("body-parser").json;
 
@@ -22,11 +25,7 @@ const traffic = require("./traffic");
 const errors = require("./errors");
 
 /* add CORS access */
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
+app.use(cors());
 
 /* app starting point */
 app.use(logger("dev"));
