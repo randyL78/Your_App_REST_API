@@ -15,7 +15,7 @@
 ``` JavaScript
 
   $.ajax({
-    url: 'https://yourappdata.com/rest/',
+    url: 'https://graph-data-fewd.herokuapp.com/rest',
     dataType: 'json',
     success: function(data) {
       /* the console.log just displays the data, in your app you will 
@@ -31,7 +31,7 @@
 
 ``` JavaScript
 
-const url = 'https://yourappdata.com/rest/';
+const url = 'https://graph-data-fewd.herokuapp.com/rest';
 const ajax = new XMLHttpRequest();	
 // wait until data has been retrieved
 ajax.onreadystatechange = () => {
@@ -52,7 +52,7 @@ ajax.send();
 
 ``` JavaScript
 
-var url = 'https://yourappdata.com/rest/';
+var url = 'https://graph-data-fewd.herokuapp.com/rest';
 var ajax = new XMLHttpRequest();	
 // wait until data has been retrieved
 ajax.onreadystatechange = (function () {
