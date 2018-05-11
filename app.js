@@ -31,6 +31,10 @@ app.use("/rest", routes);
 // create the traffic data
 app.use(traffic);
 
+app.get("/", (req, res) => {
+  res.render('pages/index.html');
+});
+
 // if it gets this far route was not found, catch 404 and forward to handler
 app.use(function(req, res, next) {
   var err = new Error("Route not found");
@@ -38,12 +42,14 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
+
 // main error handler
 app.use(errors);
 
 
 /* create a server to run app */
-const port = process.env.port || 3030;
+const port = process.env.PORT || 3030;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

@@ -4,7 +4,8 @@
   "description": "This API is designed to provide data for the \"Web App Dashboard\" project from Treehouse",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app.js"
   },
   "repository": {
     "type": "git",
