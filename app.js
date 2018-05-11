@@ -21,16 +21,18 @@ const routes = require("./routes");
 const traffic = require("./traffic");
 const errors = require("./errors");
 
-/* app starting point */
-app.use(logger("dev"));
-app.use(jsonParser());
-
 /* add CORS access */
 app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
+
+/* app starting point */
+app.use(logger("dev"));
+app.use(jsonParser());
+
+
 
 // handle routes
 app.use("/rest", routes);
