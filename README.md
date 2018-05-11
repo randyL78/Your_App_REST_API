@@ -221,6 +221,12 @@ var ajax = new XMLHttpRequest();
 
 ```
 
+## Miscellaneous
+
+> This API is hosted with a free account on heroku, the down side of this means that the app goes to "sleep" after 30 minutes of non usage. Because of this, it may take several seconds for the data to load if it has been awhile since the API has been used
+
+### Good luck! If you have any issues using this API, please bring them up so that we can continue to make the app better!
+
 
 
 
