@@ -8,8 +8,6 @@ const traffic = (req, res, next) => {
   const MINUTES = 60 * SECONDS;
   const HOURS = 24 * MINUTES;
 
-
-
   /* Create object with data */
   const createData = options => {
 
@@ -22,7 +20,7 @@ const traffic = (req, res, next) => {
     // set unit type to caller options or set default value
     let unit = options.unit || "day";
 
-    // select data based on whether caller wants hours, days, months or years.
+    // select data based on whether caller wants hours, days, or months 
     switch (unit) {
       case "day":
         data = createDays(options);
@@ -42,8 +40,6 @@ const traffic = (req, res, next) => {
   return data;
 
   };
-
-
 
   /* Create a collection of months */
   const createMonths = options => {
@@ -89,14 +85,16 @@ const traffic = (req, res, next) => {
   let currentDayOfMonth = date.getDate();
 
   let count = 30;
+  let monthIndex = getMonthIndex(index);
 
   // set day count based on number of days in the month
   if(index == 0) {
     count = currentDayOfMonth;
+  } else {
+    count = checkDaysInMonth(monthIndex);
   }
 
-
-
+  // create data for month based on number of days
   for (let i = 0; i < count; i++) {
     day = createDay(seed, (index * count) + i, false);
     tablet  += day.traffic.tablet;
@@ -104,17 +102,59 @@ const traffic = (req, res, next) => {
     mobile  += day.traffic.mobile;
   }
 
+  // adjust date
+  date.setFullYear(getYearForIndex(index));
+  date.setMonth(monthIndex);
+
   const month = {
     traffic : {
       tablet,
       desktop,
       mobile
     },
-    date: new Date()
+    date
   };
 
   return month;
   };
+
+  /* gets the year for the given index */
+  const getYearForIndex = index => {
+    let date = new Date();
+    let monthIndex = date.getMonth();
+
+    if (index > monthIndex) {
+      let yearAdjustment = parseInt((index - monthIndex + 11) / 12);
+      date.setFullYear(date.getFullYear() - yearAdjustment);
+    }
+    return date.getFullYear();
+  };
+
+  /* check how many days are in a given month */
+  const checkDaysInMonth = (index) => {
+    index = parseInt(index);
+    const thirtyOneDayMonths = [0, 2, 4, 6, 7, 9, 11];
+    if (index === 1) {
+      return 28;
+    } else if (thirtyOneDayMonths.indexOf(index) !== -1) {
+      return 31;
+    }
+    return 30;
+
+  };
+
+  /* convert the index param into a the index of the month */
+  const getMonthIndex = index => {
+    let date = new Date();
+    let monthIndex = date.getMonth() - index;
+    if (monthIndex < 0 && monthIndex % 12 != 0) {
+      monthIndex = 12 + (monthIndex % 12);
+    } else if (monthIndex % 12 === 0) {
+      monthIndex = 0;
+    }
+    return monthIndex;
+  };
+
 
   /* Create one days worth of data */
   const createDay = (seed, index = 1) => {
