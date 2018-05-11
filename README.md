@@ -6,16 +6,16 @@
 
 ## How to use
 
-## Basic version with default parameters
+## Basic usage with default parameters
 
-> You can use AJAX to call the Graph Data REST API and will recieve by default 8 weeks worth of "weekly" data. The default implementation is as follows:
+> You can use AJAX to call the Graph Data REST API and will recieve by default 30 days worth of "daily" data. The default implementation is as follows:
 
 ### if you are using JQuery:
 
 ``` JavaScript
 
   $.ajax({
-    url: 'https://graph-data-fewd.herokuapp.com/rest',
+    url: 'https://graph-data-fewd.herokuapp.com/rest/',
     dataType: 'json',
     success: function(data) {
       /* the console.log just displays the data, in your app you will 
@@ -31,7 +31,7 @@
 
 ``` JavaScript
 
-const url = 'https://graph-data-fewd.herokuapp.com/rest';
+const url = 'https://graph-data-fewd.herokuapp.com/rest/';
 const ajax = new XMLHttpRequest();	
 // wait until data has been retrieved
 ajax.onreadystatechange = () => {
@@ -52,7 +52,7 @@ ajax.send();
 
 ``` JavaScript
 
-var url = 'https://graph-data-fewd.herokuapp.com/rest';
+var url = 'https://graph-data-fewd.herokuapp.com/rest/';
 var ajax = new XMLHttpRequest();	
 // wait until data has been retrieved
 ajax.onreadystatechange = (function () {
@@ -68,3 +68,160 @@ ajax.open('GET', url);
 ajax.send();
 
 ```
+
+> This is the first couple entries of what the object you get back will look like with the defaults in:
+
+``` Json
+
+{
+    "day0": {
+        "traffic": {
+            "tablet": 125,
+            "desktop": 137,
+            "mobile": 77
+        },
+        "date": "2018-05-11T22:12:25.836Z"
+    },
+    "day1": {
+        "traffic": {
+            "tablet": 118,
+            "desktop": 95,
+            "mobile": 89
+        },
+        "date": "2018-05-10T22:12:25.836Z"
+    },
+    "day2": {
+        "traffic": {
+            "tablet": 101,
+            "desktop": 123,
+            "mobile": 106
+        },
+        "date": "2018-05-09T22:12:25.836Z"
+    },
+    "day3": {
+        "traffic": {
+            "tablet": 116,
+            "desktop": 149,
+            "mobile": 98
+        },
+        "date": "2018-05-08T22:12:25.836Z"
+    } 
+    ... // more entries after this...
+
+```
+
+## Setting options with your GET request
+
+> There are three options you can set for what type of data you want to get back from your GET request. 
+1 seed
+2 unit
+3 count
+
+### Seed
+
+ A seed allows you to get the same data back each time you make your GET request as oppossed to "random" data that would be different everytime you refreshed the browser. Without specifying a seed, the api defaults to `7654321`, but this can be changed by passing a seed parameter to the API on your GET request. We recommend a 7 digit seed, but you can assign it any integer value you would like. You can set the seed option as follows:
+
+#### JQuery 
+
+> For JQuery, you add in a `data` key and then give it a value of `seed=yourNumber`
+
+``` JavaScript
+  $.ajax({
+    url: 'https://graph-data-fewd.herokuapp.com/rest/',
+    data: 'seed=1234567', // replace 1234567 with any number you would like
+    dataType: 'json',
+    /* rest of code snippet from basic usage .... */
+
+```
+
+#### ECMA2015 and traditional JS
+
+> For the other languages you create a string variable that contains `?` followed by the option and the option value like this `"?seed=yourNumber"` and then add it to the end of your URL.
+
+``` JavaScript
+
+var options = '?seed=123456'; // replace 1234567 with any number you would like
+var url = 'https://graph-data-fewd.herokuapp.com/rest/' + options;
+var ajax = new XMLHttpRequest();	
+/* rest of code snippet from basic usage .... */
+
+```
+
+### Unit
+
+The unit option allows you to specify whether you want the returned data in hours, days, or months. By default the unit is set to `day`. You can set the `unit` option as follows:
+
+#### JQuery 
+
+> For JQuery, you add in a `data` key and then give it a value of `unit=typeOfData`.
+
+``` JavaScript
+  $.ajax({
+    url: 'https://graph-data-fewd.herokuapp.com/rest',
+    data: 'unit=month', // or day or hour
+    dataType: 'json',
+    /* rest of code snippet from basic usage .... */
+
+```
+
+#### ECMA2015 and traditional JS
+
+> For the other languages you create a string variable that contains `/?` followed by the option and the option value like this `"?unit=typeOfData"` and then add it to the end of your URL.
+
+``` JavaScript
+
+var options = '/?unit=month'; // or day or hour
+var url = 'https://graph-data-fewd.herokuapp.com/rest/' + options;
+var ajax = new XMLHttpRequest();	
+/* rest of code snippet from basic usage .... */
+
+```
+
+## Count
+
+The count option allows you to specify how much data gets returned from the GET request. The default value for count depends on the unit type. For `hour` units the default is `24`, for `day` units the default is `30`, and for `month` units the default is `12`. You can specify any integer value for `count`, just be aware that the higher the number, the longer the response may take.
+
+#### JQuery 
+
+> For JQuery, you add in a `data` key and then give it a value of `count=number`.
+
+``` JavaScript
+  $.ajax({
+    url: 'https://graph-data-fewd.herokuapp.com/rest',
+    data: 'count=43', // replace 43 with any number you would like
+    dataType: 'json',
+    /* rest of code snippet from basic usage .... */
+
+```
+
+#### ECMA2015 and traditional JS
+
+> For the other languages you create a string variable that contains `/?` followed by the option and the option value like this `"?unit=typeOfData"` and then add it to the end of your URL.
+
+``` JavaScript
+
+var options = '/?count=43'; // replace 43 with any number you would like
+var url = 'https://graph-data-fewd.herokuapp.com/rest/' + options;
+var ajax = new XMLHttpRequest();	
+/* rest of code snippet from basic usage .... */
+
+```
+
+
+
+
+
+
+> Alternatively, you can use a template literal when creating you URL variable and add the values in that way. 
+
+``` JavaScript
+
+  var seed = 123456;
+  var url = `https://graph-data-fewd.herokuapp.com/rest/?seed=${seed}`;
+
+```
+
+
+
+
+
