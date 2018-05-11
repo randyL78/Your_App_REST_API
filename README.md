@@ -20,7 +20,7 @@
     success: function(data) {
       /* the console.log just displays the data, in your app you will 
       want to pass that data to another method or assign it to a 
-      varaible outside of the ajax scope */
+      variable outside of the ajax scope */
       console.log(data);
     }
   });
@@ -38,7 +38,7 @@ ajax.onreadystatechange = () => {
   if(ajax.readyState === 4) {
     const data = JSON.parse(ajax.responseText);
     /* the console.log just displays the data, in your app you will want 
-    to pass that data to another method or assign it to a varaible 
+    to pass that data to another method or assign it to a variable 
     outside of the ajax scope */
     console.log(data)
   }
@@ -59,7 +59,7 @@ ajax.onreadystatechange = (function () {
   if(ajax.readyState === 4) {
     var data = JSON.parse(ajax.responseText);
     /* the console.log just displays the data, in your app you will want 
-    to pass that data to another method or assign it to a varaible 
+    to pass that data to another method or assign it to a variable 
     outside of the ajax scope */
     console.log(data)
   }
