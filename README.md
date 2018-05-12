@@ -109,6 +109,7 @@ ajax.send();
     // more entries after this...
 
 ```
+> NOTE: the first object in data starts with "now", and each one goes further back into the past. For instance `day3` would be 3 days ago.
 
 ## Setting options with your GET request
 
@@ -177,7 +178,7 @@ var ajax = new XMLHttpRequest();
 
 ```
 
-## Count
+### Count
 
 The count option allows you to specify how much data gets returned from the GET request. The default value for count depends on the unit type. For `hour` units the default is `24`, for `day` units the default is `30`, and for `month` units the default is `12`. You can specify any integer value for `count`, just be aware that the higher the number, the longer the response may take.
 
@@ -207,17 +208,44 @@ var ajax = new XMLHttpRequest();
 
 ```
 
+### Multiple options
 
+> Setting multiple options allows you to be very specific with the data that gets returned by the API request. The way you pass multpile options is to chain them together with a `&` symbol, like in the following examples:
 
+#### JQuery 
 
+``` JavaScript
+  $.ajax({
+    url: 'https://graph-data-fewd.herokuapp.com/rest',
+    // only add the options you need, you don't have to use all three
+    // the order of the options doesn't matter
+    data: 'seed=1234567&unit=month&count=43',
+    dataType: 'json',
+    /* rest of code snippet from basic usage .... */
 
+```
+
+#### ECMA2015 and traditional JS
+
+``` JavaScript
+// only add the options you need, you don't have to use all three
+// the order of the options doesn't matter
+var options = '/?seed=1234567&unit=month&count=43'; 
+var url = 'https://graph-data-fewd.herokuapp.com/rest/' + options;
+var ajax = new XMLHttpRequest();	
+/* rest of code snippet from basic usage .... */
+
+```
 
 > Alternatively, you can use a template literal when creating you URL variable and add the values in that way. 
 
 ``` JavaScript
 
-  var seed = 123456;
-  var url = `https://graph-data-fewd.herokuapp.com/rest/?seed=${seed}`;
+  var seed  = 123456;
+  var unit  = 'month';
+  var count = 43;
+
+  var url = `https://graph-data-fewd.herokuapp.com/rest/?seed=${seed}&unit=${unit}&count=${count}`;
 
 ```
 
