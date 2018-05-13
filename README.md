@@ -2,10 +2,12 @@
 
 ## This API is designed to provide data for the "Web App Dashboard" project from Treehouse
 
-> This project does not claim to be an official addition to the project and was not created or condoned by Treehouse.
+> This API does not claim to be an official addition to the project and was not created or condoned by Treehouse.
 
-## How to use
+## Installation
 
+> This is a live API being served at: https://graph-data-fewd.herokuapp.com and not intended to be installed locally. However, feel free to browse the code if you want to get a better feel for how the API works.
+ 
 ## Basic usage with default parameters
 
 > You can use AJAX to call the Graph Data REST API and will recieve by default 30 days worth of "daily" data. The default implementation is as follows:

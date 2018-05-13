@@ -24,6 +24,9 @@ const routes = require("./routes");
 const traffic = require("./traffic");
 const errors = require("./errors");
 
+/* set view render engine to pug */
+app.set('view engine', 'pug');
+
 /* add CORS access */
 app.use(cors());
 
@@ -31,16 +34,15 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(jsonParser());
 
-
-
 // handle routes
 app.use("/rest", routes);
 
 // create the traffic data
 app.use(traffic);
 
-app.get("/", (req, res) => {
-  res.render('pages/index.html');
+// Display a home page for base route 
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
 // if it gets this far route was not found, catch 404 and forward to handler
@@ -49,8 +51,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-
 
 // main error handler
 app.use(errors);
