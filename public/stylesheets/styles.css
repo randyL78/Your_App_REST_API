@@ -43,6 +43,8 @@ footer p {
   }
 
   pre {
-    width: 80%
+    width: 80%;
+    border-radius: 7px;
+    box-shadow: 5px 5px 5px 0px #643264;
   }
 }
