@@ -1,0 +1,16 @@
+
+#content {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+
+header, footer {
+  background-color: blueviolet;
+  color: white;
+}
+
+pre {
+  width: 80%
+  
+}

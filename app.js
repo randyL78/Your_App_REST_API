@@ -8,6 +8,7 @@
 // Import express, app start point
 const express = require('express');
 const app = express();
+const path = require('path');
 
 /* Project dependencies middleware */
 // handle CORS requirements
@@ -23,6 +24,9 @@ const logger = require("morgan");
 const routes = require("./routes");
 const traffic = require("./traffic");
 const errors = require("./errors");
+
+// testing out some stuff
+app.use(express.static(path.join(__dirname, 'public')))
 
 /* set view render engine to pug */
 app.set('view engine', 'pug');
