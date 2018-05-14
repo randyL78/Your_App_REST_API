@@ -1,16 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+header, footer {
+  background-color: blueviolet;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  padding: 1.25em;
+  color: antiquewhite;
+}
+
+h2, h3, h4, h5 {
+  color: #643264;
+}
+
+p, blockquote {
+  color: #444;
+}
 
 #content {
   max-width: 1024px;
   margin: 0 auto;
+
 }
 
 
-header, footer {
-  background-color: blueviolet;
-  color: white;
+footer {
+  padding: .75em;
 }
 
-pre {
-  width: 80%
-  
+footer p {
+  color: antiquewhite;
+}
+
+@media screen and (min-width: 768px) {
+
+  header h1 {
+    text-align: left;
+  }
+
+  pre {
+    width: 80%
+  }
 }
