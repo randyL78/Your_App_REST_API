@@ -21,6 +21,12 @@ p, blockquote {
   color: #444;
 }
 
+blockquote {
+ border-left: 5px solid blueviolet;
+ padding-left: .5em;
+ margin-left: 30px;
+}
+
 #content {
   max-width: 1024px;
   margin: 0 auto;

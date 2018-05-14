@@ -2,7 +2,7 @@
 
 ## This API is designed to provide data for the "Web App Dashboard" project from Treehouse
 
-> This API does not claim to be an official addition to the project and was not created or condoned by Treehouse.
+> This API does not claim to be an official addition to the project and was not created or initialised by Treehouse.
 
 ## Installation
 
@@ -239,7 +239,7 @@ var ajax = new XMLHttpRequest();
 
 ```
 
-> Alternatively, you can use a template literal when creating you URL variable and add the values in that way. 
+> Alternatively, you can use a template literal when creating your URL variable and add the values in that way. 
 
 ``` JavaScript
 
